@@ -11,6 +11,7 @@ namespace HelloAna
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Ana");
+            Console.WriteLine("Hello Ana2");
         }
     }
 }
