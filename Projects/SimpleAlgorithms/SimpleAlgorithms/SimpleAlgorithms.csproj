@@ -41,8 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="P1_Pavaj.cs" />
+    <Compile Include="P2_ExcelColumns.cs" />
+    <Compile Include="P3_ArieTriunghi.cs" />
+    <Compile Include="P4_RataDescendenta.cs" />
     <Compile Include="P5_Pepene.cs" />
     <Compile Include="P6_Sportiv.cs" />
+    <Compile Include="P8_Capre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
