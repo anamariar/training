@@ -52,13 +52,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="P10_ParchetTests.cs" />
     <Compile Include="P1_PavajTests.cs" />
     <Compile Include="P2_ExcelColumnsTests.cs" />
     <Compile Include="P3_ArieTriungiTests.cs" />
     <Compile Include="P4_RataDescendentaTests.cs" />
     <Compile Include="P5_PepeneTests.cs" />
     <Compile Include="P6_SportivTests.cs" />
+    <Compile Include="P7_TrenuriTests.cs" />
     <Compile Include="P8_CapreTests.cs" />
+    <Compile Include="P9_CiuperciTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

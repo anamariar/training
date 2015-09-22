@@ -32,7 +32,7 @@ namespace SimpleAlgorithmsTests
         public void TestExcelComlumns4()
         {
             string result = P2_ExcelColumns.GetColumn(260);
-            Assert.AreEqual("ZJ", result);
+            Assert.AreEqual("JZ", result);
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ namespace SimpleAlgorithmsTests
         public void TestExcelComlumns6()
         {
             string result = P2_ExcelColumns.GetColumn(2600);
-            Assert.AreEqual("ZCV", result);
+            Assert.AreEqual("CVZ", result);
         }
 
         [TestMethod]
@@ -54,6 +54,13 @@ namespace SimpleAlgorithmsTests
         {
             string result = P2_ExcelColumns.GetColumn(130);
             Assert.AreEqual("DZ", result);
+        }
+
+        [TestMethod]
+        public void TestExcelComlumns8()
+        {
+            string result = P2_ExcelColumns.GetColumn(676);
+            Assert.AreEqual("ZZ", result);
         }
     }
 }
