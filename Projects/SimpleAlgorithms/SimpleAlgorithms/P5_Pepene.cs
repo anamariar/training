@@ -10,7 +10,7 @@ namespace SimpleAlgorithms
     {
         public static string IsDivisible(ushort kg)
         {
-            return ((kg % 2 == 0) && (kg / 2 % 2 == 0)) ? "YES" : "NO";
+            return ((kg % 2 == 0) && (kg != 2)) ? "YES" : "NO";
         }
     }
 }

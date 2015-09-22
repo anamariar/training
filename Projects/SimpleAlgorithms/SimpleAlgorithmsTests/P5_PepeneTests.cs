@@ -24,19 +24,19 @@ namespace SimpleAlgorithmsTests
         [TestMethod]
         public void TestPepene3()
         {
-            Assert.AreEqual("NO", P5_Pepene.IsDivisible(18));
+            Assert.AreEqual("YES", P5_Pepene.IsDivisible(18));
         }
 
         [TestMethod]
         public void TestPepene4()
         {
-            Assert.AreEqual("YES", P5_Pepene.IsDivisible(16));
+            Assert.AreEqual("NO", P5_Pepene.IsDivisible(2));
         }
 
         [TestMethod]
         public void TestPepene5()
         {
-            Assert.AreEqual("NO", P5_Pepene.IsDivisible(10));
+            Assert.AreEqual("YES", P5_Pepene.IsDivisible(10));
         }
     }
 }
