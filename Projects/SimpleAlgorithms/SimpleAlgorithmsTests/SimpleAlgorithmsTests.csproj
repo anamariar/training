@@ -55,7 +55,7 @@
     <Compile Include="P10_ParchetTests.cs" />
     <Compile Include="P1_PavajTests.cs" />
     <Compile Include="P2_ExcelColumnsTests.cs" />
-    <Compile Include="P3_ArieTriungiTests.cs" />
+    <Compile Include="P3_ArieCladireTests.cs" />
     <Compile Include="P4_RataDescendentaTests.cs" />
     <Compile Include="P5_PepeneTests.cs" />
     <Compile Include="P6_SportivTests.cs" />
