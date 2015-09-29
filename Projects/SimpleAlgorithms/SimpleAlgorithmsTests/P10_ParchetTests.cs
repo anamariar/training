@@ -27,5 +27,12 @@ namespace SimpleAlgorithmsTests
             var rezultat = P10_Parchet.CalculeazaParchet(5, 6, 2, 4, 15);
             Assert.AreEqual(5, rezultat);
         }
+
+        [TestMethod]
+        public void TestParchet4()
+        {
+            var rezultat = P10_Parchet.CalculeazaParchet(6, 6, 4, 4, 20);
+            Assert.AreEqual(3, rezultat);
+        }
     }
 }
