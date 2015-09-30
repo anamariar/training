@@ -30,5 +30,12 @@ namespace SimpleAlgorithmsTests
         {
             Assert.AreEqual(100, P6_Sportiv.GetWorkingRepetitions(10));
         }
+
+
+        [TestMethod]
+        public void TestSportiv5()
+        {
+            Assert.AreEqual(0, P6_Sportiv.GetWorkingRepetitions(0));
+        }
     }
 }
