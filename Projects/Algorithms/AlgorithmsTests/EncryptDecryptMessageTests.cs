@@ -61,5 +61,27 @@ namespace AlgorithmsTests
 
             Assert.IsTrue(decryptedMessage.StartsWith("Nuincanuamplecat"));
         }
+
+        [TestMethod]
+        public void EncryptionTest6()
+        {
+            string message = "E joi";
+            ushort columns = 2;
+            var encryptedMessage = EncryptDecryptMessage.EncryptMessage(message, columns);
+            var decryptedMessage = EncryptDecryptMessage.DecryptMessage(encryptedMessage, columns);
+
+            Assert.IsTrue(decryptedMessage.StartsWith("Ejoi"));
+        }
+
+        [TestMethod]
+        public void EncryptionTest7()
+        {
+            string message = "Fara criptare";
+            ushort columns = 1;
+            var encryptedMessage = EncryptDecryptMessage.EncryptMessage(message, columns);
+            var decryptedMessage = EncryptDecryptMessage.DecryptMessage(encryptedMessage, columns);
+
+            Assert.IsTrue(decryptedMessage.StartsWith("Faracriptare"));
+        }
     }
 }
