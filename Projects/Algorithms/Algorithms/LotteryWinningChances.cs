@@ -10,7 +10,9 @@ namespace Algorithms
     {
         public static double GetWinningChances(ushort playedNumbers, ushort totalNumbers, ushort category)
         {
-            if (category > 0) --category;
+            if ((playedNumbers * totalNumbers == 0) || (category == 0)) return 0;
+
+            --category;
             return Combinations(playedNumbers - category, playedNumbers) * Combinations(category, totalNumbers - playedNumbers)
                 / Combinations(playedNumbers, totalNumbers);
         }

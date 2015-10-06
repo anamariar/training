@@ -14,7 +14,8 @@ namespace AlgorithmsTests
             ushort columns = 3;
             var encryptedMessage = EncryptDecryptMessage.EncryptMessage(message, columns);
             var decryptedMessage = EncryptDecryptMessage.DecryptMessage(encryptedMessage, columns);
-            
+
+            Assert.AreEqual(encryptedMessage.Length, decryptedMessage.Length);
             Assert.IsTrue(decryptedMessage.StartsWith(message));
         }
 
@@ -26,6 +27,7 @@ namespace AlgorithmsTests
             var encryptedMessage = EncryptDecryptMessage.EncryptMessage(message, columns);
             var decryptedMessage = EncryptDecryptMessage.DecryptMessage(encryptedMessage, columns);
 
+            Assert.AreEqual(encryptedMessage.Length, decryptedMessage.Length);
             Assert.IsTrue(decryptedMessage.StartsWith(message));
         }
 
@@ -37,6 +39,7 @@ namespace AlgorithmsTests
             var encryptedMessage = EncryptDecryptMessage.EncryptMessage(message, columns);
             var decryptedMessage = EncryptDecryptMessage.DecryptMessage(encryptedMessage, columns);
 
+            Assert.AreEqual(encryptedMessage.Length, decryptedMessage.Length);
             Assert.IsTrue(decryptedMessage.StartsWith(message));
         }
 
@@ -48,6 +51,7 @@ namespace AlgorithmsTests
             var encryptedMessage = EncryptDecryptMessage.EncryptMessage(message, columns);
             var decryptedMessage = EncryptDecryptMessage.DecryptMessage(encryptedMessage, columns);
 
+            Assert.AreEqual(encryptedMessage.Length, decryptedMessage.Length);
             Assert.IsTrue(decryptedMessage.StartsWith("nicaierinuecaacasa"));
         }
 
@@ -59,6 +63,7 @@ namespace AlgorithmsTests
             var encryptedMessage = EncryptDecryptMessage.EncryptMessage(message, columns);
             var decryptedMessage = EncryptDecryptMessage.DecryptMessage(encryptedMessage, columns);
 
+            Assert.AreEqual(encryptedMessage.Length, decryptedMessage.Length);
             Assert.IsTrue(decryptedMessage.StartsWith("Nuincanuamplecat"));
         }
 
@@ -70,6 +75,7 @@ namespace AlgorithmsTests
             var encryptedMessage = EncryptDecryptMessage.EncryptMessage(message, columns);
             var decryptedMessage = EncryptDecryptMessage.DecryptMessage(encryptedMessage, columns);
 
+            Assert.AreEqual(encryptedMessage.Length, decryptedMessage.Length);
             Assert.IsTrue(decryptedMessage.StartsWith("Ejoi"));
         }
 
@@ -81,6 +87,7 @@ namespace AlgorithmsTests
             var encryptedMessage = EncryptDecryptMessage.EncryptMessage(message, columns);
             var decryptedMessage = EncryptDecryptMessage.DecryptMessage(encryptedMessage, columns);
 
+            Assert.AreEqual(encryptedMessage.Length, decryptedMessage.Length);
             Assert.IsTrue(decryptedMessage.StartsWith("Faracriptare"));
         }
     }

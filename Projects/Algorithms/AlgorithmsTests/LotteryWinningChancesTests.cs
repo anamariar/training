@@ -36,6 +36,24 @@ namespace AlgorithmsTests
         public void LotteryExtractionTest5()
         {
             Assert.AreEqual(0.00096d, LotteryWinningChances.GetWinningChances(6, 49, 3), 0.00001d);
-        }        
+        }
+
+        [TestMethod]
+        public void LotteryExtractionTest6()
+        {
+            Assert.AreEqual(0, LotteryWinningChances.GetWinningChances(0, 2, 1));
+        }
+
+        [TestMethod]
+        public void LotteryExtractionTest7()
+        {
+            Assert.AreEqual(0, LotteryWinningChances.GetWinningChances(1, 0, 1));
+        }
+
+        [TestMethod]
+        public void LotteryExtractionTest8()
+        {
+            Assert.AreEqual(0, LotteryWinningChances.GetWinningChances(1, 2, 0));
+        }
     }
 }
