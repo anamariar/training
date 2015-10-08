@@ -16,22 +16,24 @@ namespace Algorithms
             {
                 lines++;
                 int randomStringLength = columns - message.Length % columns;
-                message = message.Insert(message.Length, GetRandomString(randomStringLength));
+                message = message.Insert(message.Length, GenerateString(randomStringLength, ' ', '/'));
             }
-            return EncryptText(message, lines);
+            return ProcessText(message, lines);
         }        
 
-        public static string DecryptMessage(string message, ushort columns)
+        public static string DecryptMessage(string message, ushort key)
         {
-            return EncryptText(message, columns);
+            var result = ProcessText(message, key);
+            RemoveNonAlphabeticalChars(ref result);
+            return result;
         }
 
-        private static string EncryptText(string text, int number)
+        private static string ProcessText(string text, int number)
         {
             string result = string.Empty;
             for (int i = 0; i < number; i++)
             {
-                for (int index = i; index < text.Length; index+=number)
+                for (int index = i; index < text.Length; index += number)
                 {
                     result += text[index];
                 }
@@ -39,13 +41,13 @@ namespace Algorithms
             return result;
         }
 
-        private static string GetRandomString(int length)
+        private static string GenerateString(int length, int start, int end)
         {
             string result = string.Empty;
             var random = new Random();
             for (int i=1; i<= length; i++)
             {
-                result += (char)random.Next('a', 'z');
+                result += (char)random.Next(start, end);
             }
             return result;
         }
@@ -53,7 +55,7 @@ namespace Algorithms
         private static void RemoveNonAlphabeticalChars(ref string text)
         {
             char[] result = text.Where(c => char.IsLetter(c)).ToArray();
-            text = new string(result);
+            text = string.Join("", result);
         }
     }
 }
