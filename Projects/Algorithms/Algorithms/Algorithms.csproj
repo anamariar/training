@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseConverter.cs" />
     <Compile Include="EncryptDecryptMessage.cs" />
     <Compile Include="ChessTable.cs" />
     <Compile Include="LotteryWinningChances.cs" />

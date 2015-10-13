@@ -52,6 +52,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BaseConverterTests.cs" />
     <Compile Include="EncryptDecryptMessageTests.cs" />
     <Compile Include="ChessTableTests.cs" />
     <Compile Include="LotteryWinningChancesTests.cs" />
