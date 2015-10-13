@@ -57,6 +57,7 @@
     <Compile Include="ChessTableTests.cs" />
     <Compile Include="LotteryWinningChancesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecursiveProblemsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Algorithms\Algorithms.csproj">
