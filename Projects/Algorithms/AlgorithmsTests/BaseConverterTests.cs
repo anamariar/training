@@ -178,6 +178,16 @@ namespace AlgorithmsTests
         }
 
         [TestMethod]
+        public void SubstractGreaterFromLowerNumberTest()
+        {
+            byte numbersBase = 2;
+            byte[] firstNumber = new byte[] { 1, 0 };
+            byte[] secondNumber = new byte[] { 1, 1 };
+            byte[] expected = new byte[] { 0 };
+            CollectionAssert.AreEqual(expected, BaseConverter.Subtract(firstNumber, secondNumber, numbersBase));
+        }
+
+        [TestMethod]
         public void SubstractNumbersInBaseEightTest()
         {
             byte numbersBase = 8;
@@ -289,6 +299,26 @@ namespace AlgorithmsTests
             byte[] secondNumber = new byte[] { 3, 2 };
             byte[] expected = new byte[] { 1, 14 };
             CollectionAssert.AreEqual(expected, BaseConverter.Divide(firstNumber, secondNumber, numbersBase));
+        }
+
+        [TestMethod]
+        public void DivideZeroToNumberTest()
+        {
+            byte numbersBase = 2;
+            byte[] firstNumber = new byte[] { 0 };
+            byte[] secondNumber = new byte[] { 1, 0, 1, 0 };
+            byte[] expected = new byte[] { 0 };
+            CollectionAssert.AreEqual(expected, BaseConverter.Divide(firstNumber, secondNumber, numbersBase));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(DivideByZeroException))]
+        public void DivideByZeroTest()
+        {
+            byte numbersBase = 2;
+            byte[] firstNumber = new byte[] { 1, 1, 0, 0, 1, 0, 1 };
+            byte[] secondNumber = new byte[] { 0 };
+            var result = BaseConverter.Divide(firstNumber, secondNumber, numbersBase);
         }
     }
 }

@@ -94,18 +94,21 @@ namespace Algorithms
             AddZerosToLeft(ref secondNumber, result.Length - secondNumber.Length);
 
             int carry = 0;
-            for (int i = result.Length - 1; i >= 0; i--)
+            if (GreaterThan(firstNumber, secondNumber))
             {
-                if (carry + firstNumber[i] < secondNumber[i])
+                for (int i = result.Length - 1; i >= 0; i--)
                 {
-                    result[i] = (byte)(numbersBase + firstNumber[i] + carry - secondNumber[i]);
-                    carry = -1;
-                }
-                else
-                {
-                    result[i] = (byte)(firstNumber[i] + carry - secondNumber[i]);
-                    carry = 0;
-                }
+                    if (carry + firstNumber[i] < secondNumber[i])
+                    {
+                        result[i] = (byte)(numbersBase + firstNumber[i] + carry - secondNumber[i]);
+                        carry = -1;
+                    }
+                    else
+                    {
+                        result[i] = (byte)(firstNumber[i] + carry - secondNumber[i]);
+                        carry = 0;
+                    }
+                } 
             }
             RemoveZerosFromLeft(ref result);
             return result;
@@ -145,7 +148,9 @@ namespace Algorithms
         }
 
         internal static byte[] Divide(byte[] firstNumber, byte[] secondNumber, byte numbersBase)
-        {
+        {            
+            if (!GreaterThan(secondNumber, new byte[] { 0 })) throw new DivideByZeroException();
+
             byte[] result = { 0 };
             while (GreaterThan(firstNumber, Subtract(secondNumber, new byte[] { 1 }, numbersBase)))
             {
