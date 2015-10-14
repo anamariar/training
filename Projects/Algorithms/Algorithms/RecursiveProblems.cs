@@ -57,16 +57,19 @@ namespace Algorithms
         }
 
         private static float DoOperation(string stringOperator, string firstOperand, string secondOperand)
-        {          
-            var firstNumber = float.Parse(firstOperand, CultureInfo.InvariantCulture.NumberFormat);
-            var secondNumber = float.Parse(secondOperand, CultureInfo.InvariantCulture.NumberFormat);
-            switch (stringOperator)
+        {
+            float firstNumber;
+            float secondNumber;
+            if (float.TryParse(firstOperand, out firstNumber) && float.TryParse(secondOperand, out secondNumber))
             {
-                case "+": return firstNumber + secondNumber;
-                case "-": return firstNumber - secondNumber;
-                case "*": return firstNumber * secondNumber;
-                case "/": return firstNumber / secondNumber;
-                default: break;
+                switch (stringOperator)
+                {
+                    case "+": return firstNumber + secondNumber;
+                    case "-": return firstNumber - secondNumber;
+                    case "*": return firstNumber * secondNumber;
+                    case "/": return firstNumber / secondNumber;
+                    default: break;
+                } 
             }
             return 0;
         }

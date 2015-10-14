@@ -84,7 +84,6 @@ namespace AlgorithmsTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException))]
         public void CalculatorInvalidStringOperatorAtTheEndTest()
         {
             string text = "* 3 *";
