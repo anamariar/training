@@ -57,37 +57,37 @@ namespace AlgorithmsTests
         [TestMethod]
         public void CalculatorOneOperationTest()
         {
-            string text = "* 3 4";
-            Assert.AreEqual(12f, RecursiveProblems.Calculator(text));
+            string prefixedExpression = "* 3 4";
+            Assert.AreEqual(12f, RecursiveProblems.Calculate(prefixedExpression));
         }
 
         [TestMethod]
         public void CalculatorTwoOperationsTest()
         {
-            string text = "* + 1 1 2";
-            Assert.AreEqual(4f, RecursiveProblems.Calculator(text));
+            string prefixedExpression = "* + 1 1 2";
+            Assert.AreEqual(4f, RecursiveProblems.Calculate(prefixedExpression));
         }
 
         [TestMethod]
         public void CalculatorMultipleOperationsTest()
         {
-            string text = "* / * + 56 45 45 3 0.75";
-            Assert.AreEqual(1136.25f, RecursiveProblems.Calculator(text));
+            string prefixedExpression = "* / * + 56 45 45 3 0.75";
+            Assert.AreEqual(1136.25f, RecursiveProblems.Calculate(prefixedExpression));
         }
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void CalculatorInvalidStringTest()
         {
-            string text = "* 3";
-            Assert.AreEqual(0f, RecursiveProblems.Calculator(text));
+            string prefixedExpression = "* 3";
+            Assert.AreEqual(0f, RecursiveProblems.Calculate(prefixedExpression));
         }
 
         [TestMethod]
         public void CalculatorInvalidStringOperatorAtTheEndTest()
         {
-            string text = "* 3 *";
-            Assert.AreEqual(0f, RecursiveProblems.Calculator(text));
+            string prefixedExpression = "* 3 *";
+            Assert.AreEqual(0f, RecursiveProblems.Calculate(prefixedExpression));
         }
         
     }

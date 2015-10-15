@@ -27,33 +27,33 @@ namespace Algorithms
         internal static uint[] GetPascalTriangleRow(uint row)
         {
             uint[] result = new uint[row + 1];
-            uint[] previous = new uint[row];
+            uint[] previousRow = new uint[row];
             result[0] = 1;
             if (row > 0)
             {
                 result[row] = 1;
-                previous = GetPascalTriangleRow(row - 1);
+                previousRow = GetPascalTriangleRow(row - 1);
             }
             for (int i = 1; i < row; i++)
             {               
-                result[i] = previous[i] + previous[i - 1];
+                result[i] = previousRow[i] + previousRow[i - 1];
             }
             return result;
         }        
 
-        internal static float Calculator(string text)
+        internal static float Calculate(string prefixedExpression)
         {
-            if (text.Length < 3) throw new InvalidOperationException();
+            if (prefixedExpression.Length < 3) throw new InvalidOperationException();
 
-            string[] textArray = text.Split(' ');            
-            if (textArray.Length == 3) return DoOperation(textArray[0], textArray[2], textArray[1]);
+            string[] expression = prefixedExpression.Split(' ');            
+            if (expression.Length == 3) return DoOperation(expression[0], expression[2], expression[1]);
 
-            var firstElement = textArray[0];
-            var lastElement = textArray[textArray.Length - 1];
-            string[] newTextArray = new string[textArray.Length - 2];
-            Array.Copy(textArray, 1, newTextArray, 0, newTextArray.Length);
-            string newText = String.Join(" ", newTextArray);
-            return DoOperation(firstElement, Calculator(newText).ToString(CultureInfo.InvariantCulture), lastElement);
+            var firstElement = expression[0];
+            var lastElement = expression[expression.Length - 1];
+            string[] newExpression = new string[expression.Length - 2];
+            Array.Copy(expression, 1, newExpression, 0, newExpression.Length);
+            string newPrefixedExpression = String.Join(" ", newExpression);
+            return DoOperation(firstElement, Calculate(newPrefixedExpression).ToString(CultureInfo.InvariantCulture), lastElement);
         }
 
         private static float DoOperation(string stringOperator, string firstOperand, string secondOperand)
