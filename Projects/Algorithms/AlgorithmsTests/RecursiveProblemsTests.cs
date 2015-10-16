@@ -97,39 +97,59 @@ namespace AlgorithmsTests
         }
 
         [TestMethod]
-        public void HanoiTowersTest()
+        public void HanoiTowersOneDiskTest()
         {
             uint disks = 1;
             byte[] source = new byte[] { 1 };
             byte[] destination = new byte[0];
             byte[] aux = new byte[0];
-            RecursiveProblems.HanoiTowers(disks, ref source, ref destination, ref aux);
+            uint currentMove = 0;
+            RecursiveProblems.HanoiTowers(disks, ref source, ref destination, ref aux, ref currentMove, 1);
+            Assert.AreEqual((uint)1, currentMove);
             CollectionAssert.AreEqual(new byte[] { 1 }, destination);
             Assert.AreEqual(0, source.Length);
             Assert.AreEqual(0, aux.Length);
         }
 
         [TestMethod]
-        public void HanoiTowersTestTwo()
+        public void HanoiTowersIntermediateStateTest()
         {
-            uint disks = 2;
-            byte[] source = new byte[] { 2, 1 };
+            uint disks = 4;
+            byte[] source = new byte[] { 4, 3, 2, 1 };
             byte[] destination = new byte[0];
             byte[] aux = new byte[0];
-            RecursiveProblems.HanoiTowers(disks, ref source, ref destination, ref aux);
-            CollectionAssert.AreEqual(new byte[] { 2, 1 }, destination);
-            Assert.AreEqual(0, source.Length);
+            uint currentMove = 0;
+            RecursiveProblems.HanoiTowers(disks, ref source, ref destination, ref aux, ref currentMove, 6);
+            CollectionAssert.AreEqual(new byte[] { 4, 1 }, source);
+            Assert.AreEqual(0, destination.Length);
+            CollectionAssert.AreEqual(new byte[] { 3, 2 }, aux);
+        }
+
+        [TestMethod]
+        public void HanoiTowersNoMovesTest()
+        {
+            uint disks = 4;
+            byte[] source = new byte[] { 4, 3, 2, 1 };
+            byte[] destination = new byte[0];
+            byte[] aux = new byte[0];
+            uint currentMove = 0;
+            RecursiveProblems.HanoiTowers(disks, ref source, ref destination, ref aux, ref currentMove, 0);
+            Assert.AreEqual((uint)0, currentMove);
+            CollectionAssert.AreEqual(new byte[] { 4, 3, 2, 1 }, source);
+            Assert.AreEqual(0, destination.Length);
             Assert.AreEqual(0, aux.Length);
         }
 
         [TestMethod]
-        public void HanoiTowersTestTen()
+        public void HanoiTowersTenDisksTest()
         {
             uint disks = 10;
             byte[] source = new byte[] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
             byte[] destination = new byte[0];
             byte[] aux = new byte[0];
-            RecursiveProblems.HanoiTowers(disks, ref source, ref destination, ref aux);
+            uint currentMove = 0;
+            RecursiveProblems.HanoiTowers(disks, ref source, ref destination, ref aux, ref currentMove, uint.MaxValue);
+            Assert.AreEqual((uint)1023, currentMove);
             CollectionAssert.AreEqual(new byte[] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 }, destination);
             Assert.AreEqual(0, source.Length);
             Assert.AreEqual(0, aux.Length);

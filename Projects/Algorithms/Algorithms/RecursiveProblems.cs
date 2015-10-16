@@ -114,19 +114,21 @@ namespace Algorithms
             }
         }
 
-        internal static void HanoiTowers(uint disks, ref byte[] source, ref byte[] destination, ref byte[] aux)
+        internal static void HanoiTowers(uint disks, ref byte[] source, ref byte[] destination, ref byte[] aux, ref uint currentMove, uint endMove)
         {
             if (disks == 0) return;
-            HanoiTowers(disks - 1, ref source, ref aux, ref destination);
-            MoveDisk(ref source, ref destination);
-            HanoiTowers(disks - 1, ref aux, ref destination, ref source);
+            HanoiTowers(disks - 1, ref source, ref aux, ref destination, ref currentMove, endMove);
+            if (endMove == currentMove) return;
+            MoveDisk(ref source, ref destination, ref currentMove);
+            HanoiTowers(disks - 1, ref aux, ref destination, ref source, ref currentMove, endMove);
         }
 
-        private static void MoveDisk(ref byte[] source, ref byte[] destination)
-        {
+        private static void MoveDisk(ref byte[] source, ref byte[] destination, ref uint moves)
+        {            
             Array.Resize(ref destination, destination.Length + 1);
             destination[destination.Length - 1] = source[source.Length - 1];
             Array.Resize(ref source, source.Length - 1);
+            moves++;
         }
     }
 }
