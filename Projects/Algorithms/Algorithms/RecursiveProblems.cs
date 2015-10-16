@@ -47,10 +47,14 @@ namespace Algorithms
             if (expression.Length < 3) return prefixedExpression;
 
             int index = GetLastOperatorIndex(expression);
-            string operationResult = DoOperation(expression[index], expression[index + 1], expression[index + 2]);
-            string[] newExpression = ReplaceExpression(expression, operationResult, index);
-            string newPrefixedExpression = String.Join(" ", newExpression);
-            return Calculator(newPrefixedExpression);
+            if (index >= 0)
+            {
+                string operationResult = DoOperation(expression[index], expression[index + 1], expression[index + 2]);
+                string[] newExpression = ReplaceExpression(expression, operationResult, index);
+                string newPrefixedExpression = String.Join(" ", newExpression);
+                return Calculator(newPrefixedExpression);
+            }
+            return prefixedExpression;
         }
 
         private static string DoOperation(string stringOperator, string firstOperand, string secondOperand)
@@ -92,7 +96,7 @@ namespace Algorithms
             {
                 if (IsOperator(expression[i])) return i;
             }
-            return 0;
+            return -1;
         }
 
         private static bool IsOperator(string element)

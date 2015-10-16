@@ -69,10 +69,10 @@ namespace AlgorithmsTests
         }
 
         [TestMethod]
-        public void CalculatorInvalidStringTest()
+        public void CalculatorInvalidExpressionTest()
         {
-            string prefixedExpression = "* 3";
-            Assert.AreEqual("* 3", RecursiveProblems.Calculator(prefixedExpression));
+            string prefixedExpression = "3 * * 3 5";
+            Assert.AreEqual("3 * 15", RecursiveProblems.Calculator(prefixedExpression));
         }
 
         [TestMethod]
