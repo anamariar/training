@@ -35,28 +35,25 @@ namespace Algorithms
                 previousRow = GetPascalTriangleRow(row - 1);
             }
             for (int i = 1; i < row; i++)
-            {               
+            {
                 result[i] = previousRow[i] + previousRow[i - 1];
             }
             return result;
-        }        
-
-        internal static float Calculate(string prefixedExpression)
-        {
-            if (prefixedExpression.Length < 3) throw new InvalidOperationException();
-
-            string[] expression = prefixedExpression.Split(' ');            
-            if (expression.Length == 3) return DoOperation(expression[0], expression[2], expression[1]);
-
-            var firstElement = expression[0];
-            var lastElement = expression[expression.Length - 1];
-            string[] newExpression = new string[expression.Length - 2];
-            Array.Copy(expression, 1, newExpression, 0, newExpression.Length);
-            string newPrefixedExpression = String.Join(" ", newExpression);
-            return DoOperation(firstElement, Calculate(newPrefixedExpression).ToString(CultureInfo.InvariantCulture), lastElement);
         }
 
-        private static float DoOperation(string stringOperator, string firstOperand, string secondOperand)
+        internal static string Calculator(string prefixedExpression)
+        {
+            string[] expression = prefixedExpression.Split(' ');
+            if (expression.Length < 3) return prefixedExpression;
+
+            int index = GetLastOperatorIndex(expression);
+            string operationResult = DoOperation(expression[index], expression[index + 1], expression[index + 2]);
+            string[] newExpression = ReplaceExpression(expression, operationResult, index);
+            string newPrefixedExpression = String.Join(" ", newExpression);
+            return Calculator(newPrefixedExpression);
+        }
+
+        private static string DoOperation(string stringOperator, string firstOperand, string secondOperand)
         {
             float firstNumber;
             float secondNumber;
@@ -64,15 +61,53 @@ namespace Algorithms
             {
                 switch (stringOperator)
                 {
-                    case "+": return firstNumber + secondNumber;
-                    case "-": return firstNumber - secondNumber;
-                    case "*": return firstNumber * secondNumber;
-                    case "/": return firstNumber / secondNumber;
+                    case "+": return (firstNumber + secondNumber).ToString();
+                    case "-": return (firstNumber - secondNumber).ToString();
+                    case "*": return (firstNumber * secondNumber).ToString();
+                    case "/": return (firstNumber / secondNumber).ToString();
                     default: break;
-                } 
+                }
+            }
+            return "0";
+        }        
+
+        private static string[] ReplaceExpression(string[] expression, string operationResult, int index)
+        {
+            string[] result = new string[expression.Length - 2];
+            for (int i = 0; i < index; i++)
+            {
+                result[i] = expression[i];
+            }
+            result[index] = operationResult;
+            for (int i = index + 1; i < result.Length; i++)
+            {
+                result[i] = expression[i + 2];
+            }
+            return result;
+        }
+
+        private static int GetLastOperatorIndex(string[] expression)
+        {
+            for (int i = expression.Length - 3; i >= 0; i--)
+            {
+                if (IsOperator(expression[i])) return i;
             }
             return 0;
         }
 
+        private static bool IsOperator(string element)
+        {
+            switch (element)
+            {
+                case "+": 
+                case "-": 
+                case "*": 
+                case "/":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        
     }
 }
