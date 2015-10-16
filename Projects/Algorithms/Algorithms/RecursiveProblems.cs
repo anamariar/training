@@ -47,8 +47,7 @@ namespace Algorithms
             if (expression.Length < 3) return prefixedExpression;
 
             int index = GetLastOperatorIndex(expression);
-            bool invalidOperatorPosition = IsOperator(expression[expression.Length - 1]) || IsOperator(expression[expression.Length - 2]);
-            if ((index >= 0)&&(!invalidOperatorPosition))
+            if ((index >= 0)&&(index < expression.Length - 2))
             {
                 string operationResult = DoOperation(expression[index], expression[index + 1], expression[index + 2]);
                 string[] newExpression = ReplaceExpression(expression, operationResult, index);
@@ -93,7 +92,7 @@ namespace Algorithms
 
         private static int GetLastOperatorIndex(string[] expression)
         {
-            for (int i = expression.Length - 3; i >= 0; i--)
+            for (int i = expression.Length - 1; i >= 0; i--)
             {
                 if (IsOperator(expression[i])) return i;
             }
