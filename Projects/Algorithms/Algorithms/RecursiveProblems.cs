@@ -12,6 +12,7 @@ namespace Algorithms
             if (text.Length == 1) return text;
             return text[text.Length - 1] + ReverseString(text.Remove(text.Length - 1, 1));
         }
+
         internal static string ReplaceStringChar(string text, char originalChar, char replaceChar)
         {
             if (text.Length == 1) return ReplaceChar(text, originalChar, replaceChar);
@@ -47,7 +48,7 @@ namespace Algorithms
             if (expression.Length < 3) return prefixedExpression;
 
             int index = GetLastOperatorIndex(expression);
-            if ((index >= 0)&&(index < expression.Length - 2))
+            if ((index >= 0) && (index < expression.Length - 2))
             {
                 string operationResult = DoOperation(expression[index], expression[index + 1], expression[index + 2]);
                 string[] newExpression = ReplaceExpression(expression, operationResult, index);
@@ -112,6 +113,20 @@ namespace Algorithms
                     return false;
             }
         }
-        
+
+        internal static void HanoiTowers(uint disks, ref byte[] source, ref byte[] destination, ref byte[] aux)
+        {
+            if (disks == 0) return;
+            HanoiTowers(disks - 1, ref source, ref aux, ref destination);
+            MoveDisk(ref source, ref destination);
+            HanoiTowers(disks - 1, ref aux, ref destination, ref source);
+        }
+
+        private static void MoveDisk(ref byte[] source, ref byte[] destination)
+        {
+            Array.Resize(ref destination, destination.Length + 1);
+            destination[destination.Length - 1] = source[source.Length - 1];
+            Array.Resize(ref source, source.Length - 1);
+        }
     }
 }

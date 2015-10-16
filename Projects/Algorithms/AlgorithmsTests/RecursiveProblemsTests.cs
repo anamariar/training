@@ -95,5 +95,44 @@ namespace AlgorithmsTests
             string prefixedExpression = "- * 4 + 2 1 * 2 - 3 2";
             Assert.AreEqual("10", RecursiveProblems.Calculator(prefixedExpression));
         }
+
+        [TestMethod]
+        public void HanoiTowersTest()
+        {
+            uint disks = 1;
+            byte[] source = new byte[] { 1 };
+            byte[] destination = new byte[0];
+            byte[] aux = new byte[0];
+            RecursiveProblems.HanoiTowers(disks, ref source, ref destination, ref aux);
+            CollectionAssert.AreEqual(new byte[] { 1 }, destination);
+            Assert.AreEqual(0, source.Length);
+            Assert.AreEqual(0, aux.Length);
+        }
+
+        [TestMethod]
+        public void HanoiTowersTestTwo()
+        {
+            uint disks = 2;
+            byte[] source = new byte[] { 2, 1 };
+            byte[] destination = new byte[0];
+            byte[] aux = new byte[0];
+            RecursiveProblems.HanoiTowers(disks, ref source, ref destination, ref aux);
+            CollectionAssert.AreEqual(new byte[] { 2, 1 }, destination);
+            Assert.AreEqual(0, source.Length);
+            Assert.AreEqual(0, aux.Length);
+        }
+
+        [TestMethod]
+        public void HanoiTowersTestTen()
+        {
+            uint disks = 10;
+            byte[] source = new byte[] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+            byte[] destination = new byte[0];
+            byte[] aux = new byte[0];
+            RecursiveProblems.HanoiTowers(disks, ref source, ref destination, ref aux);
+            CollectionAssert.AreEqual(new byte[] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 }, destination);
+            Assert.AreEqual(0, source.Length);
+            Assert.AreEqual(0, aux.Length);
+        }
     }
 }
