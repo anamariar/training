@@ -76,6 +76,13 @@ namespace AlgorithmsTests
         }
 
         [TestMethod]
+        public void CalculatorInvalidOperatorAtTheEndTest()
+        {
+            string prefixedExpression = "3 * 3 5 *";
+            Assert.AreEqual("3 * 3 5 *", RecursiveProblems.Calculator(prefixedExpression));
+        }
+
+        [TestMethod]
         public void CalculatorEmptyStringTest()
         {
             string prefixedExpression = "";
