@@ -55,6 +55,7 @@
     <Compile Include="BaseConverterTests.cs" />
     <Compile Include="EncryptDecryptMessageTests.cs" />
     <Compile Include="ChessTableTests.cs" />
+    <Compile Include="FindAndSortProblemsTests.cs" />
     <Compile Include="LotteryWinningChancesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecursiveProblemsTests.cs" />
