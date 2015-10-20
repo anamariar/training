@@ -15,5 +15,14 @@ namespace AlgorithmsTests
             var sorted = FindAndSortProblems.SortLotteryNumbers(loterryNumbers);
             CollectionAssert.AreEqual(expected, sorted);
         }
+
+        [TestMethod]
+        public void SortCasesTest()
+        {
+            uint[] casesPriority = new uint[] { 2, 1, 3, 1, 2, 1, 3, 2, 3, 3, 2, 1, 2, 1, 3, 1, 1, 2, 3, 2, 2 };
+            uint[] expected = new uint[] { 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3 };
+            FindAndSortProblems.SortCases(casesPriority, 0, (uint)casesPriority.Length - 1, 2);
+            CollectionAssert.AreEqual(expected, casesPriority);
+        }
     }
 }
