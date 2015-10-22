@@ -38,16 +38,59 @@ namespace Algorithms
             return words;
         }
         
+        internal static void SortCandidates(Candidate[] candidates, Candidate[] results)
+        {
+            AddResults(candidates, results);
+            ShellSort(candidates);
+        }
+
+        private static void AddResults(Candidate[] candidates, Candidate[] results)
+        {
+            for (int i = 0; i < candidates.Length; i++)
+            {
+                for (int j = 0; j < results.Length; j++)
+                {
+                    if (String.Compare(candidates[i].Name, results[j].Name, StringComparison.OrdinalIgnoreCase) == 0)
+                    {
+                        candidates[i].Votes += results[j].Votes;
+                        break;
+                    }
+                }
+            }
+        }
+
+        public static void ShellSort(Candidate[] inputArray)
+        {
+            uint j = 0;
+            Candidate temp = new Candidate();
+            uint increment = (uint)(inputArray.Length) / 2;
+            while (increment > 0)
+            {
+                for (uint index = 0; index < inputArray.Length; index++)
+                {
+                    j = index;
+                    temp = inputArray[index];
+                    while ((j >= increment) && inputArray[j - increment].Votes < temp.Votes)
+                    {
+                        inputArray[j] = inputArray[j - increment];
+                        j = j - increment;
+                    }
+                    inputArray[j] = temp;
+                }
+                increment /= 2;
+            }
+        }
+
         private static Word[] GetWordInformation(string[] original)
         {
             Word[] result = new Word[original.Length];
             int size = 0;
-            for (int i = 1; i< original.Length + 1; i++)
+            for (int i = 1; i < original.Length + 1; i++)
             {
                 bool found = false;
                 for (int j = 0; j < size; j++)
                 {
-                    if (String.Compare(original[i-1], result[j].Name, StringComparison.OrdinalIgnoreCase) == 0)
+                    if (String.Compare(original[i - 1], result[j].Name, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         found = true;
                         result[j].Occurence++;
@@ -56,7 +99,7 @@ namespace Algorithms
                 if (!found)
                 {
                     result[size].Occurence = 1;
-                    result[size++].Name = original[i-1];
+                    result[size++].Name = original[i - 1];
                 }
             }
             Array.Resize(ref result, size);
@@ -132,9 +175,10 @@ namespace Algorithms
             public uint Occurence;
         }
 
-        internal static void SortCandidates(Candidate[][] candidates)
+        public struct Pupil
         {
-
+            public string Name;
+            public uint[][] Grades; 
         }
     }
 }
