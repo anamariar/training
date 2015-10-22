@@ -29,6 +29,73 @@ namespace Algorithms
             }
         }
 
+        internal static Word[] SortWords(string text)
+        {
+            char[] delimiterChars = { ' ', ',', '.', ':', '!', '?' };
+            string[] textArray = text.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
+            int[] count = new int[textArray.Length];
+            var words = GetWordInformation(textArray);
+            MergeSort(words, 0, words.Length - 1);
+            return words;
+        }
+        
+        public static Word[] GetWordInformation(string[] original)
+        {
+            Word[] result = new Word[original.Length];
+            int size = 0;
+            for (int i = 1; i< original.Length + 1; i++)
+            {
+                bool found = false;
+                for (int j = 0; j < size; j++)
+                {
+                    if (String.Compare(original[i-1], result[j].Name, StringComparison.InvariantCultureIgnoreCase) == 0)
+                    {
+                        found = true;
+                        result[j].Occurence++;
+                    }
+                }
+                if (!found)
+                {
+                    result[size].Occurence = 1;
+                    result[size++].Name = original[i-1];
+                }
+            }
+            Array.Resize(ref result, size);
+            return result;
+        }
+
+        private static void MergeSort(Word[] words, int left, int right)
+        {
+            if (left < right)
+            {
+                int middle = (left + right) / 2;
+                MergeSort(words, left, middle);
+                MergeSort(words, middle + 1, right);
+                Merge(words, left, middle + 1, right);
+            }
+        }
+
+        private static void Merge(Word[] words, int left, int middle, int right)
+        {
+            Word[] temp = new Word[words.Length];
+
+            int leftEnd = (middle - 1);
+            int position = left;
+            int rightEnd = (right - left + 1);
+
+            while ((left <= leftEnd) && (middle <= right))
+            {
+                temp[position++] = (words[left].Occurence <= words[middle].Occurence) ? words[middle++] : words[left++];
+            }
+            while (left <= leftEnd) temp[position++] = words[left++];
+            while (middle <= right) temp[position++] = words[middle++];
+            for (int i = 0; i < rightEnd; i++)
+            {
+                words[right] = temp[right];
+                right--;
+            }
+        }
+
         private static void InsertNumber(ref uint[] sorted, uint number)
         {
             Array.Resize(ref sorted, sorted.Length + 1);
@@ -54,5 +121,21 @@ namespace Algorithms
             secondValue = temp;
         }
 
+        public struct Candidate
+        {
+            public string Name;
+            public uint Votes;
+        }
+
+        public struct Word
+        {
+            public string Name;
+            public uint Occurence;
+        }
+
+        internal static void SortCandidates(Candidate[][] candidates)
+        {
+
+        }
     }
 }
