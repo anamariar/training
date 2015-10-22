@@ -33,13 +33,12 @@ namespace Algorithms
         {
             char[] delimiterChars = { ' ', ',', '.', ':', '!', '?' };
             string[] textArray = text.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
-            int[] count = new int[textArray.Length];
             var words = GetWordInformation(textArray);
             MergeSort(words, 0, words.Length - 1);
             return words;
         }
         
-        public static Word[] GetWordInformation(string[] original)
+        private static Word[] GetWordInformation(string[] original)
         {
             Word[] result = new Word[original.Length];
             int size = 0;
@@ -48,7 +47,7 @@ namespace Algorithms
                 bool found = false;
                 for (int j = 0; j < size; j++)
                 {
-                    if (String.Compare(original[i-1], result[j].Name, StringComparison.InvariantCultureIgnoreCase) == 0)
+                    if (String.Compare(original[i-1], result[j].Name, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         found = true;
                         result[j].Occurence++;
