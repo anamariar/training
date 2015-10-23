@@ -7,6 +7,46 @@ namespace AlgorithmsTests
     [TestClass]
     public class FindAndSortProblemsTests
     {
+        #region Data
+
+            FindAndSortProblems.Pupil[] pupils = new FindAndSortProblems.Pupil[]
+            {
+                new FindAndSortProblems.Pupil
+                {
+                    Name = "Alina",
+                    Subjects = new FindAndSortProblems.Subject[]
+                    {
+                        new FindAndSortProblems.Subject { Name = "English", Grades= new uint[] { 9, 8 }, GeneralGrade = 0},
+                        new FindAndSortProblems.Subject { Name = "Math", Grades= new uint[] { 7 }, GeneralGrade = 0},
+                        new FindAndSortProblems.Subject { Name = "History", Grades= new uint[] {10, 9}, GeneralGrade = 0},
+                    },
+                    GeneralGrade = 0
+                },
+                new FindAndSortProblems.Pupil
+                {
+                    Name = "Vasile",
+                    Subjects = new FindAndSortProblems.Subject[]
+                    {
+                        new FindAndSortProblems.Subject { Name = "English", Grades= new uint[] { 10, 8 }, GeneralGrade = 0},
+                        new FindAndSortProblems.Subject { Name = "Math", Grades= new uint[] { 10 }, GeneralGrade = 0},
+                        new FindAndSortProblems.Subject { Name = "History", Grades= new uint[] {10, 9, 8}, GeneralGrade = 0},
+                    },
+                    GeneralGrade = 0
+                },
+                new FindAndSortProblems.Pupil
+                {
+                    Name = "Gheorghe",
+                    Subjects = new FindAndSortProblems.Subject[]
+                    {
+                        new FindAndSortProblems.Subject { Name = "English", Grades= new uint[] { 5, 5, 8 }, GeneralGrade = 0},
+                        new FindAndSortProblems.Subject { Name = "Math", Grades= new uint[] { 10, 7 }, GeneralGrade = 0},
+                        new FindAndSortProblems.Subject { Name = "History", Grades= new uint[] { 9 }, GeneralGrade = 0},
+                    },
+                    GeneralGrade = 0
+                },
+            };
+        #endregion
+
         [TestMethod]
         public void SortLotteryNumbersTest()
         {
@@ -19,9 +59,9 @@ namespace AlgorithmsTests
         [TestMethod]
         public void SortCasesTest()
         {
-            uint[] casesPriority = new uint[] { 2, 1, 3, 1, 2, 1, 3, 2, 3, 3, 2, 1, 2, 1, 3, 1, 1, 2, 3, 2, 2 };
-            uint[] expected = new uint[] { 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3 };
-            FindAndSortProblems.SortCases(casesPriority, 0, (uint)casesPriority.Length - 1, 2);
+            int[] casesPriority = new int[] { 2, 1, 3, 1, 2, 1, 3, 2, 3, 3, 2, 1, 2, 1, 3, 1, 1, 2, 3, 2, 2 };
+            int[] expected = new int[] { 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3 };
+            FindAndSortProblems.SortCases(casesPriority, 0, casesPriority.Length - 1, 2);
             CollectionAssert.AreEqual(expected, casesPriority);
         }
 
@@ -41,7 +81,7 @@ namespace AlgorithmsTests
                 new FindAndSortProblems.Word { Name = "caise", Occurence = 1 }
             };
             CollectionAssert.AreEqual(expected, FindAndSortProblems.SortWords(text));
-        }
+        }        
 
         [TestMethod]
         public void SortCandidatesTest()
@@ -94,5 +134,32 @@ namespace AlgorithmsTests
             CollectionAssert.AreEqual(expected, candidates);
         }
         
+        [TestMethod]
+        public void SortPupilsByGeneralGradeTest()
+        {            
+            string[] expected = new string[] { "Vasile", "Alina", "Gheorghe" };
+            CollectionAssert.AreEqual(expected, FindAndSortProblems.SortPupilsByGeneralGrade(pupils));
+        }
+
+        [TestMethod]
+        public void GetPupilWithLowestGeneralGradeTest()
+        {
+            var result = FindAndSortProblems.SortPupilsByGeneralGrade(pupils);
+            Assert.AreEqual("Gheorghe", result[result.Length - 1]);            
+        }
+
+        [TestMethod]
+        public void GetPupilWithASpecificGeneralGradeTest()
+        {
+            var sortedPupils = FindAndSortProblems.SortPupilsByGeneralGrade(pupils);
+            var pupil = FindAndSortProblems.BinarySearch(ref pupils, 8.333333f, 0, pupils.Length - 1);
+            Assert.AreEqual("Alina", pupil.Name);
+        }
+
+        [TestMethod]
+        public void GetPupilWithMostTenGradesTest()
+        {
+            Assert.AreEqual("Vasile", FindAndSortProblems.GetPupilWithGrades(pupils, 10f));
+        }
     }
 }
